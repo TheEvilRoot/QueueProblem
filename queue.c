@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "queue.h"
 
@@ -50,6 +51,11 @@ void nTraverse(QueueNode *node) {
 }
 
 void qPush(Queue *queue, int data) {
+	if (queue->limit > 0 && queue->size >= queue->limit) {
+		printf("Push: Queue limit(%d) was exceeded(%d)", queue->limit, queue->size);
+		return;
+	}
+
 	if (queue->head == NULL) {
 		queue->head = newNode(data);
 	} else{
