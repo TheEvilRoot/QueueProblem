@@ -79,6 +79,7 @@ int qPop(Queue *queue) {
 	} else {
 		int popped = queue->head->data;
 		queue->head = queue->head->next;
+		queue->size--;
 		return popped;
 	}
 }
