@@ -7,6 +7,7 @@ struct queue_node {
 };
 
 struct queue {
+	unsigned int size;
 	unsigned int limit;
 	struct queue_node *head;
 };
