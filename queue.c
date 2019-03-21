@@ -4,7 +4,7 @@
 #include "queue.h"
 
 QueueNode * emptyNode() {
-	QueueNode *node = (QueueNode) calloc(1, sizeof(QueueNode));
+	QueueNode *node = (QueueNode*) calloc(1, sizeof(QueueNode));
 
 	return node;
 }
@@ -17,7 +17,7 @@ QueueNode * newNode(int data) {
 }
 
 Queue * unlimitedQueue() {
-	Queue *queue = (Queue) calloc(1, sizeof(Queue));
+	Queue *queue = (Queue*) calloc(1, sizeof(Queue));
 
 	queue->limit = -1;
 
@@ -59,14 +59,14 @@ void qPush(Queue *queue, int data) {
 	if (queue->head == NULL) {
 		queue->head = newNode(data);
 	} else{
-		nPush(queue-head, data);
+		nPush(queue->head, data);
 	}
 	queue->size++;
 }
 
 void qTraverse(Queue *queue) {
 	if (queue->head == NULL) {
-		print("Queue is empty\n");
+		printf("Queue is empty\n");
 	} else {
 		nTraverse(queue->head);
 	}
