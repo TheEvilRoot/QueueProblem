@@ -1,0 +1,96 @@
+#include <stdlib.h>
+
+#include "queue.h"
+
+QueueNode * emptyNode() {
+	QueueNode *node = (QueueNode) calloc(1, sizeof(QueueNode));
+
+	return node;
+}
+
+QueueNode * newNode(int data) {
+	QueueNode *node = emptyNode();
+	node->data = data;
+
+	return node;
+}
+
+Queue * unlimitedQueue() {
+	Queue *queue = (Queue) calloc(1, sizeof(Queue));
+
+	queue->limit = -1;
+
+	return queue;
+}
+
+Queue * newQueue(unsigned int limit) {
+	Queue *queue = unlimitedQueue();
+
+	queue->limit = limit;
+
+	return queue;
+}
+
+void nPush(QueueNode *node, int data) {
+	if (node->next != NULL) {
+		nPush(node->next, data);
+	} else {
+		node->next = newNode(data);
+	}
+}
+
+void nTraverse(QueueNode *node) {
+	if (node == NULL) {
+		return;
+	}
+
+	printf("%d\n", node->data);
+
+	nTraverse(node->next);
+}
+
+void qPush(Queue *queue, int data) {
+	if (queue->head == NULL) {
+		queue->head = newNode(data);
+	} else{
+		nPush(queue-head, data);
+	}
+	queue->size++;
+}
+
+void qTraverse(Queue *queue) {
+	if (queue->head == NULL) {
+		print("Queue is empty\n");
+	} else {
+		nTraverse(queue->head);
+	}
+}	
+
+int qPop(Queue *queue) {
+	if (queue->head == NULL) {
+		printf("Pop: Queue is empty\n");
+		return -1;
+	} else {
+		int popped = queue->head->data;
+		queue->head = queue->head->next;
+		return popped;
+	}
+}
+
+int qPeek(Queue *queue) {
+	if (queue->head == NULL) {
+		printf("Peek: Queue is empty\n");
+		return -1;
+	}
+	
+	return queue->head->data;
+}
+
+
+
+
+
+
+
+
+
